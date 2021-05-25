@@ -1,0 +1,31 @@
+version: "3"
+
+networks:
+  backend:
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - backend
+    depends_on:
+      - nuxt
+    restart: unless-stopped
+
+  nuxt:
+    build: ./
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - backend
+    command: npm run start
+
+volumes:
+  caddy_data:

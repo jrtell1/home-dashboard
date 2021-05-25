@@ -53,7 +53,7 @@ export default {
   },
 
   proxy: {
-    '/api/': { target: 'https://mastermind.telltech.se', pathRewrite: {'^/api/': ''} }
+    '/api/': { target: 'https://mastermind.telltech.se:1337', pathRewrite: {'^/api/': ''} }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
