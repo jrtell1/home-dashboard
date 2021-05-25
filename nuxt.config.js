@@ -1,6 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
+    ssr: true,
     title: 'Dashboard',
     meta: [
       { charset: 'utf-8' },
@@ -9,6 +10,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: "https://kit.fontawesome.com/e1fb1c29e5.js", crossOrigin: "anonymous" }
     ]
   },
 
@@ -35,16 +39,37 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/dayjs',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+    headers: {
+      common: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    },
+  },
+
+  proxy: {
+    '/api/': { target: 'https://mastermind.telltech.se', pathRewrite: {'^/api/': ''} }
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
       lang: 'sv'
     }
+  },
+
+  dayjs: {
+    locales: ['sv'],
+    defaultLocale: 'sv',
+    plugins: [
+      'relativeTime',
+      'calendar'
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
