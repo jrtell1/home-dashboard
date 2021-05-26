@@ -2,7 +2,7 @@
   <div class="grid gap-4 grid-cols-2">
     <button
         v-if="light.on"
-        class="flex justify-center items-center border border-gray-600 shadow-md rounded-md bg-gray-700 py-4 cursor-pointer select-none hover:bg-gray-600"
+        class="flex items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
         @click="setLightOnState(false)"
     >
       <i class="fas fa-lightbulb fa-2x mr-2 text-yellow-100"></i>
@@ -10,7 +10,7 @@
     </button>
     <button
         v-else
-        class="flex justify-center items-center border border-gray-600 shadow-md rounded-md bg-gray-700 py-4 cursor-pointer select-none hover:bg-gray-600"
+        class="flex items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
         @click="setLightOnState(true)"
     >
       <i class="far fa-lightbulb fa-2x mr-2"></i>

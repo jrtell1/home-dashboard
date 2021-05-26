@@ -100,8 +100,8 @@
         </div>
       </data-box>
 
-      <box title="Lampor">
-        <div class="grid gap-2">
+      <box title="Lampor" class="row-span-2">
+        <div class="grid gap-4">
           <light-box
             v-if="livingRoomLight"
             :light="livingRoomLight"
