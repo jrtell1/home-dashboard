@@ -44,16 +44,12 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    proxy: true,
+    baseURL: 'https://mastermind.telltech.se',
     headers: {
       common: {
         'X-Requested-With': 'XMLHttpRequest'
       }
     },
-  },
-
-  proxy: {
-    '/api/': { target: 'https://mastermind.telltech.se' }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
