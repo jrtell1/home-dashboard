@@ -131,6 +131,10 @@
           </light-box>
         </div>
       </box>
+
+      <box title="Klocka">
+        <clock></clock>
+      </box>
     </div>
   </div>
 </template>
@@ -139,11 +143,12 @@
 import DataBox from './DataBox';
 import Box from './Box';
 import LightBox from './LightBox';
+import Clock from './Clock';
 
 export default {
   name: 'Dashboard',
 
-  components: { LightBox, Box, DataBox },
+  components: { Clock, LightBox, Box, DataBox },
 
   data() {
     return {

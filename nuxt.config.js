@@ -64,7 +64,8 @@ export default {
     defaultLocale: 'sv',
     plugins: [
       'relativeTime',
-      'calendar'
+      'calendar',
+      'localizedFormat',
     ]
   },
 
