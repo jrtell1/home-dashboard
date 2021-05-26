@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  Mastermind_backend:
+  mastermind_backend:
     external: true
 
 services:
@@ -11,5 +11,5 @@ services:
       - "3000:3000"
     restart: unless-stopped
     networks:
-      - Mastermind_backend
+      - mastermind_backend
     command: npm run start
