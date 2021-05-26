@@ -100,49 +100,36 @@
         </div>
       </data-box>
 
-      <box title="Vardagsrum">
-        <div v-if="!livingRoomLight">
-          <i class="fas fa-question fa-4x"></i>
-        </div>
-        <light-box
-            v-else
+      <box title="Lampor">
+        <div class="grid gap-2">
+          <light-box
+            v-if="livingRoomLight"
             :light="livingRoomLight"
             @updated="this.getLightsData"
-        >
-          <div class="text-xs text-gray-500">
-            {{ fromNow(livingRoomLight.last_seen_at) }}
-          </div>
-        </light-box>
-      </box>
-
-      <box title="Fönster">
-        <div v-if="!windowLight">
-          <i class="fas fa-question fa-4x"></i>
-        </div>
-        <light-box
-            v-else
+          >
+            <div class="text-xs text-gray-500">
+              {{ fromNow(livingRoomLight.last_seen_at) }}
+            </div>
+          </light-box>
+          <light-box
+            v-if="windowLight"
             :light="windowLight"
             @updated="this.getLightsData"
-        >
-          <div class="text-xs text-gray-500">
-            {{ fromNow(windowLight.last_seen_at) }}
-          </div>
-        </light-box>
-      </box>
-
-      <box title="Skrivbord">
-        <div v-if="!deskLight">
-          <i class="fas fa-question fa-4x"></i>
-        </div>
-        <light-box
-            v-else
+          >
+            <div class="text-xs text-gray-500">
+              {{ fromNow(windowLight.last_seen_at) }}
+            </div>
+          </light-box>
+          <light-box
+            v-if="deskLight"
             :light="deskLight"
             @updated="this.getLightsData"
-        >
-          <div class="text-xs text-gray-500">
-            {{ fromNow(deskLight.last_seen_at) }}
-          </div>
-        </light-box>
+          >
+            <div class="text-xs text-gray-500">
+              {{ fromNow(deskLight.last_seen_at) }}
+            </div>
+          </light-box>
+        </div>
       </box>
     </div>
   </div>

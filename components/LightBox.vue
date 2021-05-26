@@ -1,36 +1,37 @@
 <template>
   <div class="grid gap-4 grid-cols-2">
-    <div
+    <button
         v-if="light.on"
-        class="flex flex-col justify-center items-center border border-gray-600 shadow-md rounded-md bg-gray-700 py-4 cursor-pointer select-none hover:bg-gray-600"
+        class="flex justify-center items-center border border-gray-600 shadow-md rounded-md bg-gray-700 py-4 cursor-pointer select-none hover:bg-gray-600"
         @click="setLightOnState(false)"
     >
-      <i class="fas fa-lightbulb fa-3x mb-4 text-yellow-100"></i>
-      <h2>På</h2>
-    </div>
-    <div
+      <i class="fas fa-lightbulb fa-2x mr-2 text-yellow-100"></i>
+      <span class="px-2">{{ light.name }}</span>
+    </button>
+    <button
         v-else
-        class="flex flex-col justify-center items-center border border-gray-600 shadow-md rounded-md bg-gray-700 py-4 cursor-pointer select-none hover:bg-gray-600"
+        class="flex justify-center items-center border border-gray-600 shadow-md rounded-md bg-gray-700 py-4 cursor-pointer select-none hover:bg-gray-600"
         @click="setLightOnState(true)"
     >
-      <i class="far fa-lightbulb fa-3x mb-4"></i>
-      <h2>Av</h2>
+      <i class="far fa-lightbulb fa-2x mr-2"></i>
+      <span class="px-2">{{ light.name }}</span>
+    </button>
+    <div class="flex flex-col justify-center">
+      <div class="flex items-center">
+        <vue-slider
+            class="flex-1"
+            direction="ltr"
+            tooltip="none"
+            :dotSize="20"
+            :min="0"
+            :max="255"
+            v-model="brightness"
+            @drag-end="setLightBrightnessState"
+        ></vue-slider>
+        <div class="ml-1">{{ ((brightness / 255) * 100).toFixed(0) }} <span class="text-gray-400">%</span></div>
+      </div>
+      <slot></slot>
     </div>
-    <div class="flex flex-col items-center">
-      <div>{{ ((brightness / 255) * 100).toFixed(0) }} <span class="text-gray-400">%</span></div>
-      <vue-slider
-          class="flex-1"
-          direction="btt"
-          tooltip="none"
-          :dotSize="20"
-          :min="0"
-          :max="255"
-          v-model="brightness"
-          @drag-end="setLightBrightnessState"
-      ></vue-slider>
-      <h2 class="text-sm pt-1 text-gray-300">Ljusstyrka</h2>
-    </div>
-    <slot></slot>
   </div>
 </template>
 
