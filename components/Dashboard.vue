@@ -1,6 +1,6 @@
 <template>
   <div class="text-white bg-gray-900 min-h-screen">
-    <h1 class="pt-2 px-4 text-gray-400 font-semibold font-mono">
+    <h1 class="pt-2 px-4 text-gray-400 font-semibold font-mono text-xs">
       Mastermind
       <span class="font-normal text-xs">| uppdaterat {{ lastApiCallAt }}</span>
     </h1>
