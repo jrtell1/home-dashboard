@@ -1,6 +1,6 @@
 <template>
   <div class="text-white bg-gray-900 min-h-screen relative">
-    <h1 class="px-4 text-gray-400 font-semibold font-mono text-xs absolute">
+    <h1 class="px-4 text-gray-400 font-semibold font-mono text-xs leading-tight -mb-3">
       Hemma
       <span class="font-normal text-xs">| uppdaterat {{ lastApiCallAt }}</span>
     </h1>

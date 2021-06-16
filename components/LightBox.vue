@@ -26,7 +26,7 @@
     </button>
 
     <modal :name="'brightness-'+light.name" :adaptive="true" height="auto">
-      <div class="p-10 bg-gray-800 shadow-lg">
+      <div class="p-10 bg-gray-800 shadow-lg overflow-hidden">
         <h3>Ljusstyrka - {{ light.name }}</h3>
         <div class="flex flex-col justify-center">
           <div class="flex items-center">
