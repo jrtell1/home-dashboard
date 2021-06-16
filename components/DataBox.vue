@@ -1,8 +1,7 @@
 <template>
   <box :title="title">
     <h1 class="text-6xl pb-4">
-      {{ value }}
-      <small class="text-gray-400">{{ unit }}</small>
+      {{ value }}<small class="text-gray-400 ml-1">{{ unit }}</small>
     </h1>
     <slot></slot>
   </box>

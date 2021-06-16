@@ -22,7 +22,7 @@
       @click="openModal(false)"
     >
       <i class="fas fa-sun fa-lg"></i>
-      <span class="px-2">{{ Math.round((brightness / 255) * 100) }} %</span>
+      <span class="px-2 whitespace-nowrap">{{ Math.round((brightness / 255) * 100) }} %</span>
     </button>
 
     <modal :name="'brightness-'+light.name" :adaptive="true" height="auto">

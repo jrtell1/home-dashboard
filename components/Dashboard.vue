@@ -1,7 +1,7 @@
 <template>
-  <div class="text-white bg-gray-900 min-h-screen">
-    <h1 class="pt-2 px-4 text-gray-400 font-semibold font-mono text-xs">
-      Mastermind
+  <div class="text-white bg-gray-900 min-h-screen relative">
+    <h1 class="px-4 text-gray-400 font-semibold font-mono text-xs absolute">
+      Hemma
       <span class="font-normal text-xs">| uppdaterat {{ lastApiCallAt }}</span>
     </h1>
     <div class="grid gap-4 sm:grid-cols-2 sm:grid-rows-4 lg:grid-cols-3 lg:grid-rows-3 xl:grid-cols-4 p-4">
@@ -14,7 +14,7 @@
             <div class="text-xs text-gray-300">
               {{ sensor.name }}
             </div>
-            <div class="text-xl">{{ (sensor.value / 100).toFixed(1) }} <span class="text-gray-400 text-base">°C</span></div>
+            <div class="text-xl">{{ (sensor.value / 100).toFixed(1) }}<span class="text-gray-400 text-base ml-1">°C</span></div>
             <div class="text-xs text-gray-500">
               {{ fromNow(sensor.sensor_updated_at) }}
             </div>
@@ -98,7 +98,7 @@
             <div class="text-xs text-gray-300">
               {{ sensor.name }}
             </div>
-            <div class="text-xl">{{ (sensor.value / 100).toFixed(0) }} <span class="text-gray-400 text-base">%</span></div>
+            <div class="text-xl">{{ (sensor.value / 100).toFixed(0) }}<span class="text-gray-400 text-base ml-1">%</span></div>
             <div class="text-xs text-gray-500">
               {{ fromNow(sensor.sensor_updated_at) }}
             </div>
