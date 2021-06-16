@@ -5,8 +5,11 @@
       <span class="font-normal text-xs">| uppdaterat {{ lastApiCallAt }}</span>
     </h1>
     <div class="grid gap-4 sm:grid-cols-2 sm:grid-rows-4 lg:grid-cols-3 lg:grid-rows-3 xl:grid-cols-4 p-4">
-      <data-box title="Temperatur - Inomhus" :value="(temperatureAverage / 100).toFixed(1)" unit="~°C">
-        <div class="grid gap-4 grid-cols-3">
+      <data-box title="Temperatur - Vardagsrum" :value="(livingroomTemperatureSensor.value / 100).toFixed(1)" unit="°C">
+        <div class="text-xs text-gray-500 mb-4">
+          {{ fromNow(livingroomTemperatureSensor.sensor_updated_at) }}
+        </div>
+        <div class="grid gap-4 grid-cols-2">
           <div v-for="sensor in temperatureSensors">
             <div class="text-xs text-gray-300">
               {{ sensor.name }}
@@ -60,7 +63,7 @@
                 </div>
               </div>
               <div class="text-sm flex flex-col justify-center">
-                <div class="text-xs text-gray-400">Temperatur</div>
+                <div class="text-xs text-gray-400">Temp</div>
                 <span>
                   {{ hourlyForecast.air_temperature }}
                   <span class="text-gray-400 text-xs">°C</span>
@@ -86,8 +89,11 @@
         </div>
       </box>
 
-      <data-box title="Luftfuktighet - Inomhus" :value="(humidityAverage / 100).toFixed(0)" unit="~%">
-        <div class="grid gap-4 grid-cols-3">
+      <data-box title="Luftfuktighet - Vardagsrum" :value="(livingroomHumiditySensor.value / 100).toFixed(0)" unit="%">
+        <div class="text-xs text-gray-500 mb-4">
+          {{ fromNow(livingroomHumiditySensor.sensor_updated_at) }}
+        </div>
+        <div class="grid gap-4 grid-cols-2">
           <div v-for="sensor in humiditySensors">
             <div class="text-xs text-gray-300">
               {{ sensor.name }}
@@ -161,26 +167,36 @@ export default {
 
   computed: {
     temperatureSensors() {
-      return this.sensors.filter(sensor => sensor.type === 'ZHATemperature');
+      return this.sensors.filter(sensor => sensor.type === 'ZHATemperature' && sensor.name !== 'Vardagsrum');
     },
     airPressureSensors() {
       return this.sensors.filter(sensor => sensor.type === 'ZHAPressure');
     },
     humiditySensors() {
-      return this.sensors.filter(sensor => sensor.type === 'ZHAHumidity');
+      return this.sensors.filter(sensor => sensor.type === 'ZHAHumidity' && sensor.name !== 'Vardagsrum');
     },
-    temperatureAverage() {
-      const sum = this.temperatureSensors.reduce((accumulated, sensor) => accumulated + sensor.value, 0);
-      const avg = (sum / this.temperatureSensors.length) || 0;
+    livingroomTemperatureSensor() {
+      const sensors = this.sensors.filter(sensor => sensor.type === 'ZHATemperature' && sensor.name === 'Vardagsrum');
 
-      return avg;
+      return sensors.length ? sensors[0] : {};
     },
-    airPressureAverage() {
-      const sum = this.airPressureSensors.reduce((accumulated, sensor) => accumulated + sensor.value, 0);
-      const avg = (sum / this.airPressureSensors.length) || 0;
+    livingroomHumiditySensor() {
+      const sensors = this.sensors.filter(sensor => sensor.type === 'ZHAHumidity' && sensor.name === 'Vardagsrum');
 
-      return avg;
+      return sensors.length ? sensors[0] : {};
     },
+    // temperatureAverage() {
+    //   const sum = this.temperatureSensors.reduce((accumulated, sensor) => accumulated + sensor.value, 0);
+    //   const avg = (sum / this.temperatureSensors.length) || 0;
+    //
+    //   return avg;
+    // },
+    // airPressureAverage() {
+    //   const sum = this.airPressureSensors.reduce((accumulated, sensor) => accumulated + sensor.value, 0);
+    //   const avg = (sum / this.airPressureSensors.length) || 0;
+    //
+    //   return avg;
+    // },
     humidityAverage() {
       const sum = this.humiditySensors.reduce((accumulated, sensor) => accumulated + sensor.value, 0);
       const avg = (sum / this.humiditySensors.length) || 0;
