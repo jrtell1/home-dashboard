@@ -1,37 +1,51 @@
 <template>
-  <div class="grid gap-4 grid-cols-2">
+  <div class="grid gap-4 grid-cols-3">
     <button
         v-if="light.on"
-        class="flex items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
+        class="flex col-span-2 items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
         @click="setLightOnState(false)"
     >
       <i class="fas fa-lightbulb fa-2x mr-2 text-yellow-100"></i>
       <span class="px-2">{{ light.name }}</span>
     </button>
     <button
-        v-else
-        class="flex items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
+        v-if="!light.on"
+        class="flex col-span-2 items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
         @click="setLightOnState(true)"
     >
       <i class="far fa-lightbulb fa-2x mr-2"></i>
       <span class="px-2">{{ light.name }}</span>
     </button>
-    <div class="flex flex-col justify-center">
-      <div class="flex items-center">
-        <vue-slider
-            class="flex-1"
-            direction="ltr"
-            tooltip="none"
-            :dotSize="20"
-            :min="0"
-            :max="255"
-            v-model="brightness"
-            @drag-end="setLightBrightnessState"
-        ></vue-slider>
-        <div class="ml-1">{{ ((brightness / 255) * 100).toFixed(0) }} <span class="text-gray-400">%</span></div>
+
+    <button
+      class="flex items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
+      @click="openModal(false)"
+    >
+      <i class="fas fa-sun fa-lg"></i>
+      <span class="px-2">{{ Math.round((brightness / 255) * 100) }} %</span>
+    </button>
+
+    <modal :name="'brightness-'+light.name" :adaptive="true" height="auto">
+      <div class="p-10 bg-gray-800 shadow-lg">
+        <h3>Ljusstyrka - {{ light.name }}</h3>
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center">
+            <vue-slider
+              class="flex-1"
+              direction="ltr"
+              tooltip="none"
+              :dotSize="20"
+              :min="0"
+              :max="255"
+              v-model="brightness"
+              @drag-end="setLightBrightnessState"
+            ></vue-slider>
+            <div class="ml-1">{{ ((brightness / 255) * 100).toFixed(0) }} <span class="text-gray-400">%</span></div>
+          </div>
+          <slot></slot>
+        </div>
       </div>
-      <slot></slot>
-    </div>
+    </modal>
   </div>
 </template>
 
@@ -63,6 +77,10 @@ export default {
   },
 
   methods: {
+    openModal() {
+      this.$modal.show('brightness-'+this.light.name);
+    },
+
     async setLightOnState(on) {
       try {
         const { data } = await this.$axios.post('/api/home/lights/' + this.light.id, { on });
