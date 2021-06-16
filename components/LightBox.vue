@@ -6,7 +6,7 @@
         @click="setLightOnState(false)"
     >
       <i class="fas fa-lightbulb fa-2x mr-2 text-yellow-100"></i>
-      <span class="px-2">{{ light.name }}</span>
+      <span>{{ light.name }}</span>
     </button>
     <button
         v-if="!light.on"
@@ -14,15 +14,15 @@
         @click="setLightOnState(true)"
     >
       <i class="far fa-lightbulb fa-2x mr-2"></i>
-      <span class="px-2">{{ light.name }}</span>
+      <span>{{ light.name }}</span>
     </button>
 
     <button
       class="flex items-center border border-gray-600 shadow-md rounded-md bg-gray-700 px-4 py-4 cursor-pointer select-none hover:bg-gray-600"
       @click="openModal(false)"
     >
-      <i class="fas fa-sun fa-lg"></i>
-      <span class="px-2 whitespace-nowrap">{{ Math.round((brightness / 255) * 100) }} %</span>
+      <i class="fas fa-sun"></i>
+      <span class="whitespace-nowrap ml-1">{{ Math.round((brightness / 255) * 100) }}<span class="ml-1">%</span></span>
     </button>
 
     <modal :name="'brightness-'+light.name" :adaptive="true" height="auto">
