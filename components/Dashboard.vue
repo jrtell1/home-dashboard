@@ -65,21 +65,21 @@
               <div class="text-sm flex flex-col justify-center">
                 <div class="text-xs text-gray-400">Temp</div>
                 <span>
-                  {{ hourlyForecast.air_temperature }}
+                  {{ parseFloat(hourlyForecast.air_temperature).toFixed(1) }}
                   <span class="text-gray-400 text-xs">°C</span>
                 </span>
               </div>
               <div class="text-sm flex flex-col justify-center">
                 <div class="text-xs text-gray-400">Vind</div>
                 <span>
-                  {{ hourlyForecast.wind_speed }}
+                  {{ parseFloat(hourlyForecast.wind_speed).toFixed(1) }}
                   <span class="text-gray-400 text-xs">m/s</span>
                 </span>
               </div>
               <div class="text-sm flex flex-col justify-center">
                 <div class="text-xs text-gray-400">Nederbörd</div>
                 <span class="whitespace-nowrap">
-                  {{ hourlyForecast.precipitation_mean_intensity }}
+                  {{ parseFloat(hourlyForecast.precipitation_mean_intensity).toFixed(1) }}
   <!--                {{ hourlyForecast.horizontal_visibility }}-->
                   <span class="text-gray-400 text-xs">mm/h</span>
                 </span>
