@@ -45,7 +45,7 @@
             </div>
             <div class="grid grid-cols-5 gap-1">
               <div class="text-sm font-semibold leading-tight flex col-span-2">
-                <div class="mr-1 w-6 flex items-center justify-center">
+                <div class="mr-1 w-6 flex justify-center mt-2">
                   <i :class="'fas fa-lg ' + getWeatherIcon(hourlyForecast.weather_symbol)"></i>
                 </div>
                 <div class="whitespace-nowrap">
