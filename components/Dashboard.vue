@@ -292,7 +292,7 @@ export default {
 
     getWeatherIcon(symbol) {
       if (symbol <= 2) {
-        return 'fas fa-sun';
+        return 'fas fa-sun text-yellow-300';
       } else if (symbol <= 4) {
         return 'fas fa-cloud-sun';
       } else if (symbol <= 6) {
