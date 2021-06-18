@@ -44,7 +44,7 @@
               {{ forecastDate(hourlyForecast.at) }}
             </div>
             <div class="grid grid-cols-5 gap-1">
-              <div class="text-sm font-semibold leading-tight flex items-center col-span-2">
+              <div class="text-sm font-semibold leading-tight flex col-span-2">
                 <div class="mr-1 w-6 flex items-center justify-center">
                   <i :class="'fas fa-lg ' + getWeatherIcon(hourlyForecast.weather_symbol)"></i>
                 </div>
@@ -56,7 +56,7 @@
                       {{ hourlyForecast.precipitation }}
                     </span>
                     <span v-if="hourlyForecast.thunder_probability > 0">
-                      <i class="fas fa-xs fa-bolt"></i>
+                      <i class="fas fa-xs fa-bolt text-blue-300"></i>
                       {{ hourlyForecast.thunder_probability }}%
                     </span>
                   </div>
