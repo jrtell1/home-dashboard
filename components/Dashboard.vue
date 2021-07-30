@@ -135,6 +135,15 @@
               {{ fromNow(deskLight.last_seen_at) }}
             </div>
           </light-box>
+          <light-box
+            v-if="adaLight"
+            :light="adaLight"
+            @updated="this.getLightsData"
+          >
+            <div class="text-xs text-gray-500">
+              {{ fromNow(adaLight.last_seen_at) }}
+            </div>
+          </light-box>
         </div>
       </box>
 
@@ -215,6 +224,11 @@ export default {
     },
     deskLight() {
       const light = this.lights.filter(light => light.name.toLowerCase() === 'skrivbord')[0];
+
+      return light || null;
+    },
+    adaLight() {
+      const light = this.lights.filter(light => light.name.toLowerCase() === 'ada')[0];
 
       return light || null;
     }
