@@ -228,7 +228,7 @@ export default {
       return light || null;
     },
     adaLight() {
-      const light = this.lights.filter(light => light.name.toLowerCase() === 'ada')[0];
+      const light = this.lights.filter(light => light.name.toLowerCase() === 'ada säng')[0];
 
       return light || null;
     }
